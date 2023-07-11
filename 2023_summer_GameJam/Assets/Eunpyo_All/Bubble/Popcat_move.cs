@@ -125,10 +125,6 @@ public class Popcat_move : MonoBehaviour
 
         this.gameObject.transform.position += new Vector3(x, 0, 0) * Time.deltaTime;
     }
-    void OnDrawGizmos()
-    {
-        
-    }
     private void IsOnGround()
     {
         if(jj)
@@ -147,7 +143,6 @@ public class Popcat_move : MonoBehaviour
         {
             if(raycastHit.transform.gameObject.tag == "Wall" || raycastHit.transform.gameObject.tag == "Round")
             {
-                Debug.Log(raycastHit.collider.name);
                 if(!jj)
                     Jump = false;
             }
