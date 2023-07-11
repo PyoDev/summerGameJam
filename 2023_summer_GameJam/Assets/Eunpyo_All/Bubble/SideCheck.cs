@@ -8,7 +8,6 @@ public class SideCheck : MonoBehaviour
     {
         if(collision.tag == "Wall")
         {
-
             transform.GetComponentInParent<Rigidbody2D>().drag = 6.0f;
         }
     }

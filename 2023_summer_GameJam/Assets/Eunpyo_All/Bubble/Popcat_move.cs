@@ -10,7 +10,7 @@ public class Popcat_move : MonoBehaviour
     [SerializeField] GameObject bubble;
     [SerializeField] GameObject Round_col;
     public static bool LR;
-    SpriteRenderer renderer;
+    new SpriteRenderer renderer;
     Animator animator;
     Rigidbody2D rb;
     public float speed;
@@ -18,7 +18,6 @@ public class Popcat_move : MonoBehaviour
     public static bool Jump;
     public float interval;
     float time = 0.0f;
-    public bool jj;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -29,28 +28,10 @@ public class Popcat_move : MonoBehaviour
     }
     void Update()
     {
-        jj = Jump;
         JJump();
         Shoot();
         Down();
-        SideMax.transform.position = new Vector2(this.transform.position.x,0);
-        float x = Input.GetAxis("Horizontal") * speed;
-        if (x < 0)
-        { 
-            LR = true;
-            renderer.flipX = true;
-        }
-        else if (x > 0)
-        { 
-            LR = false;
-            renderer.flipX = false;
-        }
-        rb.velocity = new Vector3(x * Time.deltaTime, rb.velocity.y, 0);
-
-        this.gameObject.transform.position += new Vector3(x, 0, 0) * Time.deltaTime;
-
-        
-        
+        Move();
     }
     public void Popani()
     {
@@ -115,5 +96,23 @@ public class Popcat_move : MonoBehaviour
             Round_col.SetActive(true);
             Destroy(Instantiate(Round_col, transform.position, Quaternion.identity), 0.3f);
         }
+    }
+    void Move()
+    {
+        SideMax.transform.position = new Vector2(this.transform.position.x, 0);
+        float x = Input.GetAxis("Horizontal") * speed;
+        if (x < 0)
+        {
+            LR = true;
+            renderer.flipX = true;
+        }
+        else if (x > 0)
+        {
+            LR = false;
+            renderer.flipX = false;
+        }
+        rb.velocity = new Vector3(x * Time.deltaTime, rb.velocity.y, 0);
+
+        this.gameObject.transform.position += new Vector3(x, 0, 0) * Time.deltaTime;
     }
 }
