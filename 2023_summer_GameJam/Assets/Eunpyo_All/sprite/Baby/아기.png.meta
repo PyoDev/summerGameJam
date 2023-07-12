@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 772262b2b49be36449beebfd0fe6ccf9
+guid: 587da444fc63c804bb60b90be7947c4e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -116,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uACB0\uD63C_0"
+      name: "\uC544\uAE30_0"
       rect:
         serializedVersion: 2
-        x: 140
-        y: 35
-        width: 345
-        height: 570
+        x: 220
+        y: 292
+        width: 310
+        height: 220
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,20 +130,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d8dc4ac915b6124dad8499ff2735a95
-      internalID: 1360674415
+      spriteID: 4a331e6762f427b4f988843930433e02
+      internalID: 1203237330
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uACB0\uD63C_1"
+      name: "\uC544\uAE30_1"
       rect:
         serializedVersion: 2
-        x: 855
-        y: 30
-        width: 270
-        height: 560
+        x: 1000
+        y: 280
+        width: 310
+        height: 232
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -151,20 +151,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 365023fb41a1e8348ab93c78a481b908
-      internalID: 789574425
+      spriteID: 9a8e85a85bba3de48b61ef0c866b2be0
+      internalID: 1293031632
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\uACB0\uD63C_2"
+      name: "\uC544\uAE30_2"
       rect:
         serializedVersion: 2
-        x: 1415
-        y: 55
-        width: 365
-        height: 545
+        x: 1768
+        y: 280
+        width: 310
+        height: 238
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -172,8 +172,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df2d523aaead80145a7d5243f7df1a53
-      internalID: 16331509
+      spriteID: a857a4fa978bafb469645d778570f8f4
+      internalID: -553595443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\uC544\uAE30_3"
+      rect:
+        serializedVersion: 2
+        x: 2536
+        y: 274
+        width: 310
+        height: 244
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b44e831d17a891408c31a7777a5fd89
+      internalID: 519685101
       vertices: []
       indices: 
       edges: []
@@ -189,9 +210,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\uACB0\uD63C_2": 16331509
-      "\uACB0\uD63C_0": 1360674415
-      "\uACB0\uD63C_1": 789574425
+      "\uC544\uAE30_0": 1203237330
+      "\uC544\uAE30_2": -553595443
+      "\uC544\uAE30_3": 519685101
+      "\uC544\uAE30_1": 1293031632
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
