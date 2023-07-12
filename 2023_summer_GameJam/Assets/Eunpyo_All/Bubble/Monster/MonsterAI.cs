@@ -6,6 +6,7 @@ using UnityEngine;
 public class MonsterAI : MonoBehaviour
 {
     public GameObject child;
+    Animator animator;
     float downTime;
     Rigidbody2D rb;
     SpriteRenderer sp;
@@ -13,9 +14,12 @@ public class MonsterAI : MonoBehaviour
     public float speed;
     bool check;
     bool round;
+    float time;
     void Start()
     {
+        animator = GetComponent<Animator>();
         downTime = 0.0f;
+        time = 0.0f;
         round = true;
         check = false;
         LR = false;
@@ -26,96 +30,103 @@ public class MonsterAI : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
+            if(!check)
+            {
+                animator.SetBool("Onplayer",true);
+                speed *= 2f;
+            }
+            
             check = true;
-            Destroy(child);
         }
         if(collision.transform.gameObject.layer == 7 || collision.transform.gameObject.layer == 3)
         {
             Destroy(gameObject);
         }
     }
-    private void Update()
+    private void FixedUpdate()
     {
+        time += Time.deltaTime;
         if (!check)
         {
-            if (LR)
+            if(time > 0.6f)
             {
-                rb.velocity = new Vector3(speed * Time.deltaTime * -1 * 10, rb.velocity.y, 0);
-                sp.flipX = true;
-            }
-            else
-            {
-                rb.velocity = new Vector3(speed * Time.deltaTime * 10, rb.velocity.y, 0);
-                sp.flipX = false;
-            }
-            if (LR)
-            {
-                int layMask = (-1) - (1 << LayerMask.NameToLayer("k"));
-                Vector3 raypos = new Vector3(rb.position.x - 0.7f, rb.position.y, 0);
-                Debug.DrawRay(raypos, Vector3.down, new Color(1, 0, 0));
-                RaycastHit2D raycastHit = Physics2D.Raycast(raypos, Vector3.down, 0.5f, layMask);
-                if (raycastHit.collider == null)
+                if (LR)
                 {
-                    LR = !LR;
-                    Debug.Log("RR");
+                    rb.velocity = new Vector3(-speed, 0, 0);
+                    sp.flipX = true;
                 }
-                else if (raycastHit.collider != null)
+                else
                 {
-                    if (raycastHit.transform.gameObject.tag == "Wall")
+                    rb.velocity = new Vector3(speed, 0, 0);
+                    sp.flipX = false;
+                }
+                if (LR)
+                {
+                    int layMask = (-1) - (1 << LayerMask.NameToLayer("k"));
+                    Vector3 raypos = new Vector3(rb.position.x - 0.7f, rb.position.y, 0);
+                    Debug.DrawRay(raypos, Vector3.down, new Color(1, 0, 0));
+                    RaycastHit2D raycastHit = Physics2D.Raycast(raypos, Vector3.down, 0.5f, layMask);
+                    if (raycastHit.collider == null)
                     {
                         LR = !LR;
-                        Debug.Log("RR");
+                    }
+                    else if (raycastHit.collider != null)
+                    {
+                        if (raycastHit.transform.gameObject.tag == "Wall")
+                        {
+                            LR = !LR;
+                        }
+                    }
+                }
+                else if (!LR)
+                {
+                    int layMask = (-1) - (1 << LayerMask.NameToLayer("k"));
+                    Vector3 raypos = new Vector3(rb.position.x + 0.7f, rb.position.y, 0);
+                    Debug.DrawRay(raypos, Vector3.down, new Color(1, 0, 0));
+                    RaycastHit2D raycastHit = Physics2D.Raycast(raypos, Vector3.down, 0.5f, layMask);
+                    if (raycastHit.collider == null)
+                    {
+                        LR = !LR;
+                    }
+                    else if (raycastHit.collider != null)
+                    {
+                        if (raycastHit.transform.gameObject.tag == "Wall")
+                        {
+                            LR = !LR;
+                        }
                     }
                 }
             }
-            else if (!LR)
-            {
-                int layMask = (-1) - (1 << LayerMask.NameToLayer("k"));
-                Vector3 raypos = new Vector3(rb.position.x + 0.7f, rb.position.y, 0);
-                Debug.DrawRay(raypos, Vector3.down, new Color(1, 0, 0));
-                RaycastHit2D raycastHit = Physics2D.Raycast(raypos, Vector3.down, 0.5f, layMask);
-                if (raycastHit.collider == null)
-                {
-                    LR = !LR;
-                    Debug.Log("RR");
-                }
-                else if (raycastHit.collider != null)
-                {
-                    if (raycastHit.transform.gameObject.tag == "Wall")
-                    {
-                        LR = !LR;
-                        Debug.Log("RR");
-                    }
-                }
-            }
-            if (check)
-            {
-                Checkbottem();
-                MonsterMove();
-            }
+        }
+        if (check)
+        {
+            Checkbottem();
+            MonsterMove();
         }
         void MonsterMove()
         {
             if (LR)
             {
                 int layMask = (-1) - (1 << LayerMask.NameToLayer("k"));
+                rb.velocity = new Vector3(-speed, 0, 0);
                 Vector3 raypos = new Vector3(rb.position.x - 0.7f, rb.position.y, 0);
                 Debug.DrawRay(raypos, Vector3.down, new Color(1, 0, 0));
                 RaycastHit2D raycastHit = Physics2D.Raycast(raypos, Vector3.down, 0.5f, layMask);
                 if (raycastHit != false && raycastHit.transform.gameObject.tag == "Wall")
                     LR = !LR;
-                rb.velocity = new Vector3(speed * Time.deltaTime * -1 * 13, rb.velocity.y, 0);
                 sp.flipX = true;
+                if (raycastHit.collider != null)
+                    Debug.Log(raycastHit.transform.gameObject.tag);
             }
             else
             {
                 int layMask = (-1) - (1 << LayerMask.NameToLayer("k"));
+                rb.velocity = new Vector3(speed, 0, 0);
                 Vector3 raypos = new Vector3(rb.position.x + 0.7f, rb.position.y, 0);
                 Debug.DrawRay(raypos, Vector3.down, new Color(1, 0, 0));
-                RaycastHit2D raycastHit = Physics2D.Raycast(raypos, Vector3.down, 0.5f, layMask);
+                RaycastHit2D raycastHit = Physics2D.Raycast(raypos, Vector3.down, 0.5f,layMask);
                 if (raycastHit != false && raycastHit.transform.gameObject.tag == "Wall")
                     LR = !LR;
-                rb.velocity = new Vector3(speed * Time.deltaTime * 13, rb.velocity.y, 0);
                 sp.flipX = false;
             }
 
@@ -124,8 +135,9 @@ public class MonsterAI : MonoBehaviour
         {
             if (!round)
             {
+                int layMask = (-1) - (1 << LayerMask.NameToLayer("k"));
                 Debug.DrawRay(transform.position, new Vector3(0, -0.2f, 0), new Color(0, 1, 0));
-                RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, new Vector2(0, -0.2f), 0.5f);
+                RaycastHit2D raycastHit = Physics2D.Raycast(transform.position, new Vector2(0, -0.2f), 0.5f, layMask);
                 if (raycastHit.collider == null)
                 {
                     downTime += Time.deltaTime;
