@@ -77,7 +77,7 @@ public class Popcat_move : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             time += Time.deltaTime;
-            if (time > 0.5f)
+            if (time > 0.8f)
             {
                 animator.SetBool("Pop", true);
                 if (LR)

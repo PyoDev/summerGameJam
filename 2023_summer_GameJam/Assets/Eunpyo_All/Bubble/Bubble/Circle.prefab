@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85bcf76643b31ec4f99e83a5b317cdd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bubble_pop: {fileID: 5832961267315198415, guid: 4521a1b9773ee7943870a16d2e4ed48f, type: 3}
 --- !u!58 &8083997795470722735
 CircleCollider2D:
   m_ObjectHideFlags: 0
